@@ -1,0 +1,12 @@
+# libosformat pkg-config source file
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: osformat
+Description: osformat is a C++ library for a typesafe printf based on << conversion
+Version: @VERSION@
+Libs: -L${libdir} -losformat
+Cflags: -I${includedir}/osformat
