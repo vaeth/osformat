@@ -26,7 +26,7 @@ check_PROGRAMS = osformat-test
 osformat_test_SOURCES = \
 osformat/osformat-test.cc
 
-osformat_test_LDFLAGS = \
+osformat_test_LDADD = \
 libosformat.la
 
 pkgconfigdir = $(libdir)/pkgconfig
