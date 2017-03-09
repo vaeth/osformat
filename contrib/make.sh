@@ -13,6 +13,7 @@ Usage() {
 Available options are
   -q  quiet
   -n  Stop after ./configure, i.e. do not run make
+  -l  Install into ./local
   -e  Keep environment - do not modify LDFLAGS, CXXFLAGS, CFLAGS, CC
   -w  Enable warnings
   -g  Use clang++, setting CXX, filtering some flags (default if available)
@@ -81,6 +82,7 @@ SetCcache() {
 	ccache -C
 }
 
+prefix=/usr
 quiet=false
 earlystop=false
 keepenv=false
@@ -88,14 +90,14 @@ warnings=false
 use_chown=false
 use_ccache=:
 automake_extra=
-configure_extra='--prefix=/usr --sysconfdir=/etc'
 optimization=false
 recache=false
 clear_ccache=false
 command -v clang++ >/dev/null 2>&1 && clang=: || clang=false
 OPTIND=1
-while getopts 'qgGnewCxXyYc:rhH' opt
+while getopts 'lqgGnewCxXyYc:rhH' opt
 do	case $opt in
+	l)	prefix=$PWD/local;;
 	q)	quiet=:;;
 	g)	clang=:;;
 	G)	clang=false;;
@@ -115,6 +117,8 @@ if [ $OPTIND -gt 1 ]
 then	( eval '[ "$(( 0 + 1 ))" = 1 ]' ) >/dev/null 2>&1 && \
 	eval 'shift "$(( $OPTIND - 1 ))"' || shift "`expr $OPTIND - 1`"
 fi
+
+configure_extra=--prefix=$prefix
 
 SetCcache
 ! $warnings || configure_extra=$configure_extra' --enable-warnings'

@@ -3,6 +3,7 @@
 *osformat-1.0.2
 	Martin Väth <martin at mvath.de>:
 	- bugfix: Let SayError actually output to stderr as documented
+	- make.sh: Option -l for installing into ./local
 
 *osformat-1.0.1
 	Martin Väth <martin at mvath.de>:
