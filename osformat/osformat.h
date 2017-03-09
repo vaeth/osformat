@@ -1672,43 +1672,43 @@ class Say : public Format {
 class SayError : public Format {
  public:
   SayError(bool *success, const char *format)
-    : Format(success, stdout, format, Special::NewlineFlush()) {
+    : Format(success, stderr, format, Special::NewlineFlush()) {
   }
 
   SayError(bool *success, const std::string& format)
-    : Format(success, stdout, format, Special::NewlineFlush()) {
+    : Format(success, stderr, format, Special::NewlineFlush()) {
   }
 
   SayError(bool *success, char format)
-    : Format(success, stdout, format, Special::NewlineFlush()) {
+    : Format(success, stderr, format, Special::NewlineFlush()) {
   }
 
   SayError(bool *success, bool format)
-    : Format(success, stdout, format, Special::NewlineFlush()) {
+    : Format(success, stderr, format, Special::NewlineFlush()) {
   }
 
   explicit SayError(bool *success)
-    : Format(success, stdout, Special::NewlineFlush()) {
+    : Format(success, stderr, Special::NewlineFlush()) {
   }
 
   explicit SayError(const char *format)
-    : Format(stdout, format, Special::NewlineFlush()) {
+    : Format(stderr, format, Special::NewlineFlush()) {
   }
 
   explicit SayError(const std::string& format)
-    : Format(stdout, format, Special::NewlineFlush()) {
+    : Format(stderr, format, Special::NewlineFlush()) {
   }
 
   explicit SayError(char format)
-    : Format(stdout, format, Special::NewlineFlush()) {
+    : Format(stderr, format, Special::NewlineFlush()) {
   }
 
   explicit SayError(bool format)
-    : Format(stdout, format, Special::NewlineFlush()) {
+    : Format(stderr, format, Special::NewlineFlush()) {
   }
 
   SayError()
-    : Format(stdout, Special::NewlineFlush()) {
+    : Format(stderr, Special::NewlineFlush()) {
   }
 };
 

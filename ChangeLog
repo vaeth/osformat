@@ -1,5 +1,9 @@
 # ChangeLog for osformat
 
+*osformat-1.0.2
+	Martin Väth <martin at mvath.de>:
+	- bugfix: Let SayError actually output to stderr as documented
+
 *osformat-1.0.1
 	Martin Väth <martin at mvath.de>:
 	- Use osformat_test_LDADD instead of osformat_test_LDFLAGS for libs
