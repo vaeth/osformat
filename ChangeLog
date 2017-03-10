@@ -1,5 +1,10 @@
 # ChangeLog for osformat
 
+*osformat-1.0.3
+	Martin Väth <martin at mvath.de>:
+	- bugfix: count() returns type std::size_t
+	- bugfix: Use correctly std::size_t
+
 *osformat-1.0.2
 	Martin Väth <martin at mvath.de>:
 	- bugfix: Let SayError actually output to stderr as documented

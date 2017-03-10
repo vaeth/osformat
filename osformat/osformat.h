@@ -86,13 +86,13 @@ class Error {
 // C++98 has no strongly typed enum class.
 // But for the Format() constructor, it is important to have a numerical type
 // which does not automatigically convert from/to a standard type
-// (i.e. which provides neither a cast into such a standard type not a
+// (i.e. which provides neither a cast into such a standard type nor a
 // constructor which accepts a standard type).
 // Therefore, we provide an independent class.
 
 class Special {
  public:
-  typedef unsigned int Flags;
+  typedef unsigned char Flags;
 
 #if __cplusplus >= 201103L
   constexpr
@@ -107,8 +107,9 @@ class Special {
     : flags_(kNone) {
   }
 
-  // Instead of parameter constructors, we provide static functions which
-  // return the required object
+  // Instead of 1-parametric constructors, we provide static functions which
+  // return the required object: 1-Parametric constructors would allow for
+  // casting which we want to forbid.
 
   static Special New(Flags f) {
     Special a;
@@ -249,7 +250,7 @@ class Format {
  private:
   class Defines {
    public:
-    typedef unsigned int Flags;
+    typedef unsigned char Flags;
 
 #if __cplusplus >= 201103L
     constexpr
@@ -269,7 +270,7 @@ class Format {
 
   class Extensions {
    public:
-    typedef unsigned int Flags;
+    typedef unsigned char Flags;
 
 #if __cplusplus >= 201103L
     constexpr
@@ -347,7 +348,7 @@ class Format {
   bool abort_;
   bool *success_;
   mutable Error::Code error_;
-  mutable size_t count_;
+  mutable std::size_t count_;
 
   std::string text_;  // The format string or result
 
@@ -1331,7 +1332,7 @@ class Format {
     return text_.empty();
   }
 
-  bool count() const {
+  std::size_t count() const {
     return count_;
   }
 

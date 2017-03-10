@@ -232,10 +232,9 @@ std::string::size_type size()
 bool empty()
   A short form of StringReference().empty()
 
-std::string::size_type count()
-  If previously output to a FILE object, this returns the number of characters
-  actually written. The value is unspecified if there was no previous output
-  to FILE.
+std::size_t count()
+  If previously output to a FILE, this returns the number of bytesactually
+  written. The value is unspecified if there was no previous output to FILE.
 
 void assign(const osf::Format& source)
 void assign(osf::Format&& source)

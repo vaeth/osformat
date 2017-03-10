@@ -5,7 +5,7 @@
 #  Martin V\"ath <martin@mvath.de>
 
 dnl keep version in same line as AC_INIT for possible usage in scripts
-AC_INIT([osformat], [1.0.2],
+AC_INIT([osformat], [1.0.3],
   [https://github.com/vaeth/osformat/issues/],
   [osformat],
   [https://github.com/vaeth/osformat/])
