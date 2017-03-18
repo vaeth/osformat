@@ -82,6 +82,9 @@ SetCcache() {
 	ccache -C
 }
 
+clang_cxx=`PATH=${PATH-}${PATH:+:}/usr/lib/llvm/*/bin command -v clang++ 2>/dev/null` \
+  && [ -n "${clang_cxx:++}" ] && clang=: || clang=false
+
 prefix=/usr
 quiet=false
 earlystop=false
@@ -93,7 +96,6 @@ automake_extra=
 optimization=false
 recache=false
 clear_ccache=false
-command -v clang++ >/dev/null 2>&1 && clang=: || clang=false
 OPTIND=1
 while getopts 'lqgGnewCxXyYc:rhH' opt
 do	case $opt in
@@ -182,7 +184,7 @@ then	unset CFLAGS CXXFLAGS LDFLAGS CPPFLAGS CXX
 		CXX=`portageq envvar CXX`
 	fi
 	if $clang
-	then	CXX='clang++'
+	then	CXX=$clang_cxx
 		FilterClang
 	fi
 	[ -z "${CXX:++}" ] || export CXX
