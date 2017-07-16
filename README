@@ -236,37 +236,38 @@ std::size_t count()
   If previously output to a FILE, this returns the number of bytesactually
   written. The value is unspecified if there was no previous output to FILE.
 
-void assign(const osf::Format& source)
-void assign(osf::Format&& source)
+void assign(const osformat::Format& source)
+void assign(osformat::Format&& source)
   Assigns the format the value of source, analogously to STL containers
 
-osf::Error::Code error()
+osformat::Error::Code error()
   Returns which error occured.
-  osf::Error::kNone = 0  // no error
-  osf::Error::kWriteFailed  // e.g. count() is lower than size()
-  osf::Error::kFlushFailed  // fflush of the FILE failed
-  osf::Error::kTooManyArguments
-  osf::Error::kTooFewArguments
-  osf::Error::kTooEarlyArgument // E.g. width value is too late
-  osf::Error::kLocaleArgIsNoLocale
-  osf::Error::kLocaleMustNotBeOutput
-  osf::Error::kPrecisionArgIsNotNumeric
-  osf::Error::kWidthArgIsNotNumeric
-  osf::Error::kFillArgIsNotChar
+  osformat::Error::kNone = 0  // no error
+  osformat::Error::kWriteFailed  // e.g. count() is lower than size()
+  osformat::Error::kFlushFailed  // fflush of the FILE failed
+  osformat::Error::kTooManyArguments
+  osformat::Error::kTooFewArguments
+  osformat::Error::kTooEarlyArgument // E.g. width value is too late
+  osformat::Error::kLocaleArgIsNoLocale
+  osformat::Error::kLocaleMustNotBeOutput
+  osformat::Error::kPrecisionArgIsNotNumeric
+  osformat::Error::kWidthArgIsNotNumeric
+  osformat::Error::kFillArgIsNotChar
   All other error codes refer to invalid definitions of the format string.
 
   There is an ost::Error object which is purely static: It contains only the
   above constants and the static methods
-    const char *osf::Error::c_str(osf::Error::Code)
-    std::string osf::Error::as_string(osf::Error::Code)
-    void osf::Error::append(std::string *, osf::Error::Code)
-  which return/append an English description of the passed osf::Error::Code
-  The return value of osf::Error::c_str is static and must not be freed.
+    const char *osformat::Error::c_str(osformat::Error::Code)
+    std::string osformat::Error::as_string(osformat::Error::Code)
+    void osformat::Error::append(std::string *, osformat::Error::Code)
+  which return/append an English description of the passed
+  osformat::Error::Code
+  The return value of osfromat::Error::c_str is static and must not be freed.
 
 Strictly speaking, the following is not a method, but it is available
-for the osd::Format object:
+for the osformat::Format object:
 
-ostream& operator<<(const ostream::Format &ostream, osd::Format &)
+ostream& operator<<(const ostream::Format &ostream, osformat::Format &)
   When output into a stream, it behaves as output(ostream)
 
 
@@ -293,15 +294,15 @@ Here, a number is “free” if it is not used by any explicit argnumber specifi
 within the format. Free numbers are given in the following order:
 First, numbers occuring in indirect modifier arguments of the first conversion
 specificiation are given (in the order given in the string),
-Then the number for the first converversion specification is given.
+Then the number for the first conversion specification is given.
 Then the numbers occuring in the modifiers of the second conversion
 specification is given, then the numbers for the second conversion, etc.
 This corresponds to POSIX as close as possible.
 Moreover, it ensures (if no explicit numbers are provided), that indirect
 arguments setting modifiers do not occur after any corresponding argument
 they should modify.
-The latter is a restriction due to C++ syntax limitations: An argument cannot
-occur
+The latter is a restriction due to C++ syntax limitations: An argument must
+not occur earlier in the argument list than any of its indirect modifiers.
 
 To avoid problems for the case when the format string might come from a
 foreign translation, it is therefore recommended to always order arguments
@@ -412,7 +413,7 @@ n Dummy argument which is not output. This must be used if arguments are passed
 
 CORNER CASES BY EXAMPLES
 
-osf::Format("%s %1$s") % 'b' % 'a';
+osformat::Format("%s %1$s") % 'b' % 'a';
 // This is valid and translates into "a b"!
 // The reason is that due to the specifier %1$s, the first argument is not free
 // in the moment when the number for the first specifier %s is decided:
@@ -422,23 +423,23 @@ osf::Format("%s %1$s") % 'b' % 'a';
 // The motivation for the counterintuitive behaviour above is that you can
 // easily place modifier arguments at the beginning when the format is meant
 // to be translated into a foreign language:
-osf::Format(_("%*1s %*2s")) % width1 % width2 % string1 % string2;
+osformat::Format(_("%*1s %*2s")) % width1 % width2 % string1 % string2;
 // If you would have written
-osf::Format(_("%*s %*s")) % width1 % string1 % width2 % string2);
+osformat::Format(_("%*s %*s")) % width1 % string1 % width2 % string2);
 // the translater could not translate the string such that string1 is endowed
 // with width2. Indeed:
 
-osf::Format("%1$*2$s") % some_string % minsize);
+osformat::Format("%1$*2$s") % some_string % minsize);
 // is not valid because the indirect modifier argument must not be passed after
 // the corresponding argument it refers to!
 // However, equality is allowed. The following is valid:
-osf::Format("%1$*1$d") % string_and_minsize;
+osformat::Format("%1$*1$d") % string_and_minsize;
 
 // Modifiers for different arguments may also occur later,
 // although this practice is not recommended, because it may cause problems
 // when the string becomes translated into a foreign language which requires a
 // different order of values independent of modifiers:
-osf::Format("A: %*s B: %*s") % Awidth % Avalue % Bwidth % Bvalue;
+osformat::Format("A: %*s B: %*s") % Awidth % Avalue % Bwidth % Bvalue;
 
 
 HISTORY AND CONTRIBUTIONS
