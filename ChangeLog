@@ -1,5 +1,9 @@
 # ChangeLog for osformat
 
+*osformat-1.0.5
+	Martin Väth <martin at mvath.de>:
+	- Make move constructor/assignment operator noexcept
+
 *osformat-1.0.4
 	Martin Väth <martin at mvath.de>:
 	- fix a lot of typos in README

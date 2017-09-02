@@ -832,18 +832,18 @@ class Format {
   }
 
 #if __cplusplus > 201103L
-  Format(Format&& s) {
+  Format(Format&& s) noexcept {
     parse_ = NULL;
     assign(std::move(s));
   }
 
-  Format& operator=(Format&& s) {
+  Format& operator=(Format&& s) noexcept {
     parse_ = NULL;
     assign(std::move(s));
     return *this;
   }
 
-  void assign(Format&& s) {
+  void assign(Format&& s) noexcept {
     abort_ = std::move(s.abort_);
     success_ = std::move(s.success_);
     error_ = std::move(s.error_);
