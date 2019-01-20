@@ -26,7 +26,7 @@ The library's functionality covers essentially `std::ostream`,
 __StringPrintf__ or typesafe C++ printf variants like
 https://github.com/c42f/tinyformat or `src/eixTk/formated.h` from the
 __eix__ project.
-(See the section __History and Contributoins`` for a list of related projects).
+(See the section __History and Contributions`` for a list of related projects).
 
 
 ## Some Features by Examples
@@ -72,7 +72,7 @@ __eix__ project.
 
 - `std::cout << osformat::Format("%*2$.*E") % width % precision % (1./7);`
 
-  The global flags for std::cout keep unchanged: Everything is local
+  The global flags for std::cout remain unchanged: Everything is local
 
 - `std::string number_as_text = osformat::Format() % (1./7);`
 
