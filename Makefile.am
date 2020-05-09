@@ -37,6 +37,7 @@ pkgconfig_DATA = osformat.pc
 EXTRA_DIST = \
 .gitignore \
 CPPLINT.cfg \
+README.md \
 autogen.sh \
 contrib/cpplint.sh \
 contrib/make.sh \
