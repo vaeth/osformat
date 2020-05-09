@@ -22,12 +22,15 @@ It adds features which would not be available if one would use a plain ostream:
    than by using `std::ostringstream`.
 
 The library's functionality covers essentially `std::ostream`,
-`boost::format`, and various independent implementations of so-called
-__StringPrintf__ or typesafe C++ printf variants like
+`boost::format`, `absl::StrFormat`, and various independent implementations of
+so-called __StringPrintf__ or typesafe C++ printf variants like
 https://github.com/c42f/tinyformat or `src/eixTk/formated.h` from the
 __eix__ project.
 (See the section __History and Contributions`` for a list of related projects).
 
+Note that if the dependency cost is acceptable, the author would recommend
+to use instead `absl::StrFormat` (see https://abseil.io/docs/cpp/guides/format)
+since the latter allows even compile-time checking of the arguments.
 
 ## Some Features by Examples
 
@@ -564,3 +567,7 @@ specifiers are currently not supported, since this probably cannot be done
 compiler independent and is not necessary when the user just casts.
 There are several other independent implementations of similar type like
 e.g. `StringPrintf` propagated by Stefan Woerthmuller.
+
+Only after writing the project, the author learnt about absl::StrFormat
+(see https://abseil.io/docs/cpp/guides/format) which allows even compile-time
+checking of the arguments.
