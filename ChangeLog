@@ -1,5 +1,13 @@
 # ChangeLog for osformat
 
+*osformat-1.0.7
+	Martin Väth <martin at mvath.de>:
+	- Add SPDX-License-Identifier
+
+*osformat-1.0.6
+	Martin Väth <martin at mvath.de>:
+	- Update README.md
+
 *osformat-1.0.5
 	Martin Väth <martin at mvath.de>:
 	- Make move constructor/assignment operator noexcept

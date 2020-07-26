@@ -5,6 +5,7 @@ A C++ library for a typesafe printf/sprintf based on << conversion
 (C) Martin Väth (martin at mvath.de).
 This project is distributed under the terms of the
 GNU General Public License v2.
+SPDX-License-Identifier: GPL-2.0-only
 
 This is a typesafe `printf`/`fprintf`/`snprintf` type library for C++.
 The typesafety is obtained by using the standard `ostream`'s `<<` conversions.

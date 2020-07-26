@@ -1,11 +1,12 @@
 # This file is part of the osformat project and distributed under the
 # terms of the GNU General Public License v2.
+# SPDX-License-Identifier: GPL-2.0-only
 #
 # Copyright (c)
 #  Martin V\"ath <martin@mvath.de>
 
 dnl keep version in same line as AC_INIT for possible usage in scripts
-AC_INIT([osformat], [1.0.6],
+AC_INIT([osformat], [1.0.7],
   [https://github.com/vaeth/osformat/issues/],
   [osformat],
   [https://github.com/vaeth/osformat/])
